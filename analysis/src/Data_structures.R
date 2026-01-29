@@ -244,6 +244,109 @@ cats [1,]
 
 
 
+## Writing the dataframe to a file
+write.csv(cats, "data/feline-data.csv",
+          row.names = FALSE)
+
+## Reading the dataframe to a variable
+
+cats <- read.csv("data/feline-data.csv")
+cats
+
+## Columns are vectors, rows are lists...or the opposite...?
+
+## Add a new column
+age <- c(2,3,5)
+cbind(cats,age)
+
+nrow(cats)
+length(age)
+
+cats <- cbind(cats,age)
+cats
+
+## Add a new row
+newRow <- list("tortoiseshell",3.3, TRUE,9)
+newRow
+
+cats <- rbind(cats,newRow)
+cats
+
+## Removing rows
+cats[-4,]
+
+## Removing columns
+cats[,-4]
+cats[c(-3,-4)]
+
+## Look up column names, then remove by name
+names(cats)
+drop <- names(cats) %in% c("age")
+drop
+cats[,drop]
+
+## Append two data frames
+
+cats <- rbind(cats, cats)
+cats
 
 
 
+
+
+
+
+
+### Practice
+
+## Create data frame with your info
+
+# Dataframes
+
+Participants <- data.frame(
+  first_name = c("Carson"),
+  last_name = c("Norwood"),
+  idk = c("hi")
+)
+Participants
+
+
+
+
+
+
+
+
+
+
+
+
+# Gapminder dataset
+
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv", destfile = "data/gapminder_data.csv")
+
+gapminder <- read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/gapminder_data.csv")
+
+str(gapminder)
+
+summary(gapminder)
+# prints summary of data frame
+
+typeof(gapminder$country)
+typeof(gapminder$year)
+str(gapminder$year)
+str(gapminder$continent)
+
+nrow(gapminder)
+ncol(gapminder)
+
+dim(gapminder)
+names(gapminder)
+colnames(gapminder)
+
+## Length for dataframe is number of columns
+length(gapminder)
+
+head(gapminder)
+head(gapminder, n = 10)
+tail(gapminder)
